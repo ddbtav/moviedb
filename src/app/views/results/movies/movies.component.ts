@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MoviedbService} from '../../../models/moviedb.service';
 import {Movie} from '../../../models/movie';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-movies',
@@ -14,7 +15,8 @@ export class MoviesComponent implements OnInit {
 
   private serviceProductsSubscription: Subscription;
 
-  constructor(private moviedb: MoviedbService) {}
+  constructor(private moviedb: MoviedbService,
+              private router: Router) {}
 
   ngOnInit() {
     this.moviedb.movieSearch(this.query).subscribe( results => {
@@ -41,6 +43,7 @@ export class MoviesComponent implements OnInit {
 
   onMovieClicked(movie) {
     console.log('Clicked on: ', movie.title, ' ID: ', movie.id);
+    this.router.navigate(['/movie/' + movie.id]);
   }
 
 }

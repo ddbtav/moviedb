@@ -26,9 +26,21 @@ export class MoviedbService {
   }
 
   // Fix this so it uses a custom datatype
-  fetchMovieById(mid: string): Observable<any> {
+  // fetchMovieById(mid: number): Observable<any> {
+  //   const url = this.baseUrl + 'movie/' + mid + this.apikey;
+  //   return this.http.get(url);
+  // }
+
+
+  fetchMovieById(mid: number): Observable<any> {
     const url = this.baseUrl + 'movie/' + mid + this.apikey;
-    return this.http.get(url);
+    const fetchedFromApi = this.http.get(url);
+    console.log(fetchedFromApi);
+    // return new Movie(this.http.get(url));
+    // const fetchedMovie = new Movie(fetchedFromApi);
+    const tempObj = fetchedFromApi.pipe(map(item => new Movie(item)));
+    console.log(tempObj);
+    return tempObj;
   }
 
 
