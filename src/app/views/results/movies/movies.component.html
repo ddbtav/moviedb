@@ -4,6 +4,6 @@
 </form>
 
 <div *ngFor="let movie of searchResult" >
-  <p>{{movie.title}}</p>
+  <p (click)="onMovieClicked(movie)">{{movie.title}}</p>
 </div>
 

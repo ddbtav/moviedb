@@ -39,5 +39,8 @@ export class MoviesComponent implements OnInit {
     }
   }
 
+  onMovieClicked(movie) {
+    console.log('Clicked on: ', movie.title, ' ID: ', movie.id);
+  }
 
 }
