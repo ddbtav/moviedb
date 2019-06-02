@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Movie} from './movie';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,11 @@ export class MoviedbService {
   constructor(public http: HttpClient) { }
 
   // Fix this so it uses a custom datatype
-  movieSearch(query: string): Observable<any> {
+  movieSearch(query: string): Observable<any[]> {
     const url = this.baseUrl + 'search/movie' + this.apikey + '&query=' + query;
     return this.http.get(url).pipe(
       map(res => {
-        return (res as any).results;
+        return (res as any).results.map(item => new Movie(item));
       })
     );
   }
