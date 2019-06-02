@@ -1,5 +1,7 @@
-<h3>This is the movies component</h3>
-
+<form (ngSubmit)="onFormSubmit(f)" #f="ngForm">
+  <input type="text"  ngModel name="productName" required>
+  <button type="submit">Search for Movie</button>
+</form>
 
 <div *ngFor="let movie of searchResult" >
   <p>{{movie.title}}</p>
