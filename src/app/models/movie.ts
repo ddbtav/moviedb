@@ -24,17 +24,3 @@ export class Movie {
       }
     }
 }
-
-
-// Properties of an object received from api
-// id: 4960
-// original_title: "Synecdoche, New York"
-// overview: "A theater director struggles with his work, and the women in his life, as he attempts to create a life-size replica of New York inside a warehouse as part of his new play."
-// popularity: 7.898
-// poster_path: "/l3r5MgeN0UUySPbf6aWeUyKGdb2.jpg"
-// release_date: "2008-10-24"
-// title: "Synecdoche, New York"
-// vote_average: 7.6
-// vote_count: 538
-
-// poster path: https://image.tmdb.org/t/p/w500 + poster_path

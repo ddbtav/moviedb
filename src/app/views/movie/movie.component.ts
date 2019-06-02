@@ -14,12 +14,14 @@ export class MovieComponent implements OnInit {
 
   movie: Movie;
 
+  /*
+  When component is loaded we are getting id parameter from the address of the page and call function to get movie details.
+   */
   constructor( public route: ActivatedRoute,
                private moviedb: MoviedbService) {
 
     this.route.paramMap.subscribe( pm => {
       this.mid = pm.get('id');
-      console.log('Movie ID to fetch: ', this.mid );
       this.fetchMovie();
 
     });
@@ -28,12 +30,13 @@ export class MovieComponent implements OnInit {
   ngOnInit() {
   }
 
+  /*
+  Movie details are fetched based on this.mid value and are stored in this.movie property.
+   */
   fetchMovie() {
-    console.log('Hello from fetchMovie function', this.mid);
     this.moviedb.fetchMovieById(this.mid).subscribe(
       result => {
         this.movie = result;
-        console.log('Fetching movie result: ', this.movie);
       }
     );
 

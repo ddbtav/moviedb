@@ -18,11 +18,15 @@ export class MoviesComponent implements OnInit {
   constructor(private moviedb: MoviedbService,
               private router: Router) {}
 
+
+/*
+On initial load of the component a list is generated based on hardcoded value of "query.
+After we subscribe for query change and update the results list accordingly.
+ */
+
   ngOnInit() {
     this.moviedb.movieSearch(this.query).subscribe( results => {
       this.searchResult = results;
-      // console.log(results);
-      console.log('Is this what I want? :', this.searchResult);
     });
 
     this.serviceProductsSubscription = this.moviedb.searchUpdated.subscribe(() => {
@@ -33,16 +37,20 @@ export class MoviesComponent implements OnInit {
 
   }
 
+  /*
+On form submit the value of query is updated and event of search update is announced.
+ */
   onFormSubmit(form) {
     if (form.valid) {
       this.query = form.value.productName;
-      console.log(this.query);
       this.moviedb.searchUpdate(form.value.productName);
     }
   }
 
+  /*
+  When a line with movie is clicked - user is redirected to specific movie details page.
+   */
   onMovieClicked(movie) {
-    console.log('Clicked on: ', movie.title, ' ID: ', movie.id);
     this.router.navigate(['/movie/' + movie.id]);
   }
 
